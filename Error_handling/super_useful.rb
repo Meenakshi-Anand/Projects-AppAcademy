@@ -41,9 +41,13 @@ end
 # PHASE 4
 class BestFriend
   def initialize(name, yrs_known, fav_pastime)
-    @name = name
-    @yrs_known = yrs_known
-    @fav_pastime = fav_pastime
+
+      @name = name
+      @yrs_known = yrs_known
+      @fav_pastime = fav_pastime
+      raise DescriptiveError if yrs_known < 5
+      raise NoInputError if name.length == 0 || fav_pastime.length == 0
+    
   end
 
   def talk_about_friendship
@@ -56,5 +60,15 @@ class BestFriend
 
   def give_friendship_bracelet
     puts "Hey bestie, I made you a friendship bracelet. It says my name, #{@name}, so you never forget me."
+  end
+end
+class DescriptiveError < StandardError
+  def message
+    puts "Years known should be greater than 5"
+  end
+end
+class NoInputError < StandardError
+  def message
+    puts "Please enter a valid input"
   end
 end
