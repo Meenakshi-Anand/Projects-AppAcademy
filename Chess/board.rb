@@ -1,5 +1,8 @@
 class Board
 
+  attr_reader :grid
+
+
   def initialize
   @grid = Array.new(8){Array.new(8)}
   populate
@@ -32,8 +35,11 @@ class Board
     grid[x][y]
   end
 
-  private
-  attr_reader :grid
+  def valid_pos?(pos)
+    pos.all? {|n| n>=0 && n<8}
+  end
+
+
 
 end
 
@@ -42,5 +48,5 @@ class Piece
 end
 
 class NullPiece < Piece
-
+  
 end
