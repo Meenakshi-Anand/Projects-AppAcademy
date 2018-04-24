@@ -1,3 +1,5 @@
+require_relative "piece.rb"
+
 class Board
 
   attr_reader :grid
@@ -41,12 +43,4 @@ class Board
 
 
 
-end
-
-class Piece
-
-end
-
-class NullPiece < Piece
-  
 end

@@ -14,7 +14,7 @@ attr_reader :cursor, :board
     board.grid.each_with_index do |row,ri|
       row.each_with_index do |box,bi|
         if @cursor.cursor_pos == [ri,bi]
-          print "#{box.class.to_s.colorize(:red)}" + " |"
+          print "#{box.class.to_s.colorize(color: :white,background: :blue)}" + " |"
         else
             print "#{box.class}" + " |"
         end
@@ -26,6 +26,7 @@ attr_reader :cursor, :board
 
   def try
     while true
+      system("clear")
       render
       cursor.get_input
     end
