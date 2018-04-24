@@ -1,5 +1,6 @@
 require_relative 'piece.rb'
 require 'singleton'
+require 'byebug'
 class Piece
 attr_reader :color,:board,:position
 
@@ -17,15 +18,15 @@ class NullPiece < Piece
    end
 
    def symbol
-     " "
+     "   "
    end
-  end
+end
 
 class King < Piece
 
-include Steppable
+  include Steppable
   def symbol
-    ["♔", "♚" ][color]
+    [" ♔ " , " ♚ " ][color]
   end
 
   def move_dirs
@@ -37,7 +38,7 @@ end
 class Queen < Piece
 include Slideable
   def symbol
-    ["♕","♛"][color]
+    [" ♕ "," ♛ "][color]
   end
 
   def move_dirs
@@ -49,7 +50,7 @@ end
 class Rook < Piece
 include Slideable
   def symbol
-    ["♖","♜"][color]
+    [" ♖ "," ♜ "][color]
   end
 
   def move_dirs
@@ -61,7 +62,7 @@ end
 class Bishop < Piece
   include Slideable
   def symbol
-    ["♗","♝"][color].to_s
+    [" ♗ "," ♝ "][color].to_s
   end
 
   def move_dirs
@@ -72,7 +73,7 @@ end
 class Knight < Piece
   include Steppable
   def symbol
-    ["♘","♞"][color].to_s
+    [" ♘ "," ♞ "][color].to_s
   end
 
   def move_dirs
@@ -83,7 +84,7 @@ end
 
 class Pawn < Piece
   def symbol
-    ["♙","♟"][color]
+    [" ♙ "," ♟ "][color]
   end
   def move_dirs
   end

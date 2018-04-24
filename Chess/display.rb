@@ -18,9 +18,9 @@ attr_reader :cursor, :board
       row.each_with_index do |box,bi|
         # bcolor = (j.even?)? :black : :white
         if @cursor.cursor_pos == [ri,bi]
-          print "#{box.symbol.colorize(color: :black,background: :red)}" #+ "|"
+          print "#{box.symbol.colorize(background: :red)}" #+ "|"
         else
-            print "#{box.symbol.colorize(color: :b,background: (j.even?)?
+            print "#{box.symbol.colorize(background: (j.even?)?
             :grey : :white)}" #+ "|"
         end
         j += 1

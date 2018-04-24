@@ -1,5 +1,7 @@
-require_relative "piece.rb"
+require_relative 'piece.rb'
 require_relative 'army.rb'
+require_relative 'display.rb'
+require 'byebug'
 
 class Board
 
@@ -12,12 +14,12 @@ class Board
   end
 
   def populate
-    initial_pos = [0,1,6,7]
+    initial_pos = [0,7]
     grid.each_with_index do |row,id|
       if initial_pos.include?(id)
         row.each_index do |idx|
-          row[idx] =Pawn.new(1,self,[id,idx]) if id == 1
-          row[idx] =Pawn.new(0,self,[id,idx]) if id == 6
+           #row[idx] =Pawn.new(1,self,[id,idx]) if id == 1
+           #row[idx] =Pawn.new(0,self,[id,idx]) if id == 6
           if id == 0
             row[idx] =Rook.new(1,self,[id,idx]) if idx == 0 || idx == 7
             row[idx] =Knight.new(1,self,[id,idx]) if idx == 1 || idx == 6
@@ -60,4 +62,9 @@ class Board
 
 
 
+end
+
+if __FILE__ == $PROGRAM_NAME
+  board = Board.new
+  p board[[0,4]].moves
 end
