@@ -1,6 +1,7 @@
 require 'colorize'
 require_relative 'cursor.rb'
 require_relative 'board.rb'
+require_relative 'piece.rb'
 class Display
 
 attr_reader :cursor, :board
@@ -17,15 +18,15 @@ attr_reader :cursor, :board
       row.each_with_index do |box,bi|
         # bcolor = (j.even?)? :black : :white
         if @cursor.cursor_pos == [ri,bi]
-          print "#{box.class.to_s.colorize(color: :black,background: (j.even?)?
-          :grey : :white)}" + " |"
+          print "#{box.symbol.colorize(color: :black,background: :red)}" #+ "|"
         else
-            print "#{box.class}" + " |"
+            print "#{box.symbol.colorize(color: :b,background: (j.even?)?
+            :grey : :white)}" #+ "|"
         end
         j += 1
       end
       print "\n"
-      puts "------------------------------------------"
+    #  puts "------------------------------------------"
       i += 1
     end
   end

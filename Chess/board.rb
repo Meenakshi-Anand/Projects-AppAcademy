@@ -1,4 +1,5 @@
 require_relative "piece.rb"
+require_relative 'army.rb'
 
 class Board
 
@@ -14,9 +15,25 @@ class Board
     initial_pos = [0,1,6,7]
     grid.each_with_index do |row,id|
       if initial_pos.include?(id)
-        row.each_index {|idx|row[idx] =Piece.new }
+        row.each_index do |idx|
+          row[idx] =Pawn.new(1,self,[id,idx]) if id == 1
+          row[idx] =Pawn.new(0,self,[id,idx]) if id == 6
+          if id == 0
+            row[idx] =Rook.new(1,self,[id,idx]) if idx == 0 || idx == 7
+            row[idx] =Knight.new(1,self,[id,idx]) if idx == 1 || idx == 6
+            row[idx] =Bishop.new(1,self,[id,idx]) if idx == 2 || idx == 5
+            row[idx] =King.new(1,self,[id,idx]) if idx == 3
+            row[idx] =Queen.new(1,self,[id,idx]) if idx == 4
+          elsif id == 7
+            row[idx] =Rook.new(0,self,[id,idx]) if idx == 0 || idx == 7
+            row[idx] =Knight.new(0,self,[id,idx]) if idx == 1 || idx == 6
+            row[idx] =Bishop.new(0,self,[id,idx]) if idx == 2 || idx == 5
+            row[idx] =King.new(0,self,[id,idx]) if idx == 4
+            row[idx] =Queen.new(0,self,[id,idx]) if idx == 3
+          end
+        end
       else
-        row.each_index {|idx|row[idx] =NullPiece.new }
+        row.each_index {|idx|row[idx] = NullPiece.instance() }
       end
     end
   end

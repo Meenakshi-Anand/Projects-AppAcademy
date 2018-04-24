@@ -1,14 +1,5 @@
-class Piece
-attr_reader :color,:board,:position
+# require_relative 'army.rb'
 
-  def initialize(color,board,position)
-    @color = color
-    @board = board
-    @position = position
-  end
-
-
-end
 
 HV_MOVE = [[0,1], [0,-1], [-1,0], [1,0]]
 D_MOVE = [[1,1],[-1,-1],[1,-1],[-1,1]]
@@ -99,12 +90,4 @@ module Steppable
     return false
   end
 
-end
-
-require 'singleton'
-class NullPiece < Piece
-
-  def initialize
-
-  end
 end

@@ -1,10 +1,31 @@
 require_relative 'piece.rb'
+require 'singleton'
+class Piece
+attr_reader :color,:board,:position
+
+  def initialize(color,board,position)
+    @color = color
+    @board = board
+    @position = position
+  end
+end
+
+class NullPiece < Piece
+ include Singleton
+   def initialize
+     super(nil, board, position)
+   end
+
+   def symbol
+     " "
+   end
+  end
 
 class King < Piece
 
-include 'Steppable'
+include Steppable
   def symbol
-    [♚, ♔]
+    ["♔", "♚" ][color]
   end
 
   def move_dirs
@@ -14,9 +35,9 @@ include 'Steppable'
 end
 
 class Queen < Piece
-include 'Slideable'
+include Slideable
   def symbol
-    [♕,♛][color]
+    ["♕","♛"][color]
   end
 
   def move_dirs
@@ -26,9 +47,9 @@ include 'Slideable'
 end
 
 class Rook < Piece
-include 'Slideable'
+include Slideable
   def symbol
-    [♖,♜][color]
+    ["♖","♜"][color]
   end
 
   def move_dirs
@@ -38,9 +59,9 @@ include 'Slideable'
 end
 
 class Bishop < Piece
-  include 'Slideable'
+  include Slideable
   def symbol
-    [♗,♝][color]
+    ["♗","♝"][color].to_s
   end
 
   def move_dirs
@@ -49,20 +70,20 @@ class Bishop < Piece
 end
 
 class Knight < Piece
-  include 'Steppable'
+  include Steppable
   def symbol
-    [♘,♞][color]
+    ["♘","♞"][color].to_s
   end
 
   def move_dirs
-    [1,2], [2,1], [-1,-2], [-2,-1], [-1,2], [2,-1], [1,-2],[-2,1]
+    [[1,2], [2,1], [-1,-2], [-2,-1], [-1,2], [2,-1], [1,-2],[-2,1]]
   end
 
 end
 
 class Pawn < Piece
   def symbol
-    [♙,♟][color]
+    ["♙","♟"][color]
   end
   def move_dirs
   end
