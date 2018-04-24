@@ -11,16 +11,22 @@ attr_reader :cursor, :board
   end
 
   def render
+    i = 0
     board.grid.each_with_index do |row,ri|
+      j = (i.even?)? 0:1
       row.each_with_index do |box,bi|
+        # bcolor = (j.even?)? :black : :white
         if @cursor.cursor_pos == [ri,bi]
-          print "#{box.class.to_s.colorize(color: :white,background: :blue)}" + " |"
+          print "#{box.class.to_s.colorize(color: :black,background: (j.even?)?
+          :grey : :white)}" + " |"
         else
             print "#{box.class}" + " |"
         end
+        j += 1
       end
       print "\n"
       puts "------------------------------------------"
+      i += 1
     end
   end
 
