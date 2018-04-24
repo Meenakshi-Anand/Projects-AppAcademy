@@ -67,7 +67,7 @@ module Slideable
 end
 
 
-module SteppingPiece
+module Steppable
 
   def horizontal_dirs
   HV_MOVE
