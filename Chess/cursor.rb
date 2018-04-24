@@ -1,4 +1,5 @@
 require "io/console"
+require "byebug"
 
 KEYMAP = {
   " " => :space,
@@ -47,6 +48,7 @@ class Cursor
   private
 
   def read_char
+    # debugger
     STDIN.echo = false # stops the console from printing return values
 
     STDIN.raw! # in raw mode data is given as is to the program--the system
@@ -76,10 +78,12 @@ class Cursor
   end
 
   def handle_key(key)
+    # debugger
     case key
-    when :space  || :return
+    when :space , :return
       @cursor_pos
-    when :left || :right || :up || :down
+
+    when :left , :right ,:up ,:down
       update_pos(MOVES[key])
     when :ctrl_c
       Process.exit(0)

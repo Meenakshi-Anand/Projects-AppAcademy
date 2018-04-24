@@ -24,11 +24,18 @@ attr_reader :cursor, :board
     end
   end
 
+  def try
+    while true
+      render
+      cursor.get_input
+    end
+  end
+
 end
 
 if __FILE__ == $PROGRAM_NAME
 board = Board.new
 display = Display.new(board)
-display.render
+display.try
 
 end
