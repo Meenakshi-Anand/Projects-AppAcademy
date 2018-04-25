@@ -2,13 +2,15 @@ require_relative 'piece.rb'
 require 'singleton'
 require 'byebug'
 class Piece
-attr_reader :color,:board,:position
+attr_reader :color,:board
+attr_accessor :position
 
   def initialize(color,board,position)
     @color = color
     @board = board
     @position = position
   end
+
 end
 
 class NullPiece < Piece
@@ -86,6 +88,19 @@ class Pawn < Piece
   def symbol
     [" ♙ "," ♟ "][color]
   end
-  def move_dirs
+  # def move_dirs
+  #
+  # end
+
+  def moves
+    pos = self.position
+    # debugger
+    moves = []
+    if self.color == 0
+      moves << [pos[0]+1, pos[1]] unless pos[0]+1 > 7
+    elsif self.color == 1
+      moves << [pos[0]-1, pos[1]] unless pos[0]-1 < 0
+    end
+    moves
   end
 end

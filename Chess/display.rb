@@ -26,24 +26,48 @@ attr_reader :cursor, :board
         j += 1
       end
       print "\n"
-    #  puts "------------------------------------------"
       i += 1
     end
   end
 
   def try
-    while true
-      system("clear")
+    #  while true
+    system("clear")
       render
-      cursor.get_input
-    end
+      # cursor.get_input
+    # end
   end
 
 end
 
 if __FILE__ == $PROGRAM_NAME
 board = Board.new
+# debugger
 display = Display.new(board)
-display.try
-
+inp1 = nil
+inp2 = nil
+# cursor = Cursor.new([0,0], board)
+  while true
+    display.try
+    inp = display.cursor.get_input
+    if inp == nil
+      next
+    else
+      if inp1.nil?
+        inp1 = inp
+      else
+        inp2 = inp
+      end
+    end
+    if [inp1,inp2].none? { |x| x.nil? }
+      p [inp1, inp2]
+      board.move_piece(inp1,inp2)
+      inp1 = inp2 = nil
+    end
+  end
+# p input_pos
+# end_pos = Cursor.get_input
+# board.move_piece(initial_pos, end_pos)
+# display = Display.new(board)
+# display.try
 end
